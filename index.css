@@ -86,7 +86,7 @@ a {
     gap: 1rem;
     flex: 7;
 
-    margin-top: 15%;
+    margin-top: 10%;
 }
 
 #main #description p {
@@ -218,6 +218,8 @@ a {
 }
 
 .project-description {
+    max-height: 8rem;
+    overflow: scroll;
     padding: 0 1rem;
     margin: 0 0 1rem 0;
 }
@@ -241,7 +243,6 @@ a {
 #contacts img {
     width: 100px;
 }
-
 
 
 
