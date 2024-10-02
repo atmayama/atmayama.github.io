@@ -8,7 +8,6 @@
 
   color-scheme: light dark;
   color: whitesmoke;
-  background-color: #3185FC;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,6 +23,10 @@ body {
   min-height: 100vh;
 }
 
+div {
+  background-color: transparent;
+}
+
 *::selection {
   background-color: whitesmoke;
   color: #3185FC;
@@ -36,6 +39,7 @@ body {
 * {
   -ms-overflow-style: none;
   scrollbar-width: none;
+  cursor: none;
 }
 
 @keyframes typed {

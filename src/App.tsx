@@ -1,37 +1,21 @@
-import { useRef } from "react";
-import { Name } from "./Name";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { Content } from "./Content";
+import { Name } from "./components/Name";
+import { Content } from "./components/Content";
+import { Scroller } from "./components/Scroller";
+import { Awesome } from "./components/Awesome";
+import { Background } from "./components/Background";
 
 const App = () => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll();
-  const transform = useTransform(scrollYProgress, [0, 1], [0, 180]);
-  const rotate = useSpring(transform);
-
   return (
     <div
-      style={{ height: "200vh", width: "100vw", overflow: "scroll" }}
-      ref={ref}
+      style={{
+        height: "200vh",
+        width: "100vw",
+        overflow: "scroll",
+      }}
     >
-      <div
-        style={{
-          position: "fixed",
-          top: "1rem",
-          left: "1rem",
-        }}
-      >
-        <motion.div
-          style={{
-            width: "2em",
-            height: "2em",
-            borderRadius: "20%",
-            backgroundColor: "whitesmoke",
-            rotate,
-          }}
-          transition={{ type: "spring" }}
-        ></motion.div>
-      </div>
+      <Scroller />
+      <Awesome />
+      <Background />
       <Name />
       <Content />
     </div>
