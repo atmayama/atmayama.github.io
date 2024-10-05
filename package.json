@@ -10,15 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/lodash.debounce": "^4.0.9",
-    "@types/three": "^0.169.0",
     "framer-motion": "^11.5.4",
-    "lodash.debounce": "^4.0.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "three": "^0.169.0"
+    "three": "^0.169.0",
+    "lodash.debounce": "^4.0.8"
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.9",
+    "@types/three": "^0.169.0",
     "@eslint/js": "^9.9.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
