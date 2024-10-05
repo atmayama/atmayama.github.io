@@ -1,4 +1,15 @@
+import { motion, useScroll, useTransform } from "framer-motion";
+import { NUMBER_OF_PAGES } from "../common";
+
 export const Name = () => {
+  const { scrollY, scrollYProgress } = useScroll();
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1 / NUMBER_OF_PAGES, 1],
+    [0, -100, -100]
+  );
+  const xPercent = useTransform(x, (i) => `${i}%`);
+
   return (
     <div
       style={{
@@ -11,7 +22,7 @@ export const Name = () => {
         alignItems: "start",
       }}
     >
-      <span
+      <motion.span
         style={{
           fontSize: "10vw",
           fontWeight: 700,
@@ -23,10 +34,13 @@ export const Name = () => {
           paddingLeft: "5%",
           borderRight: ".2em solid white",
           animation: "typed 2s steps(14),blink-caret 1s step-end infinite",
+          x: xPercent,
+          y: scrollY,
         }}
+        transition={{ type: "spring" }}
       >
-        Sushanth Kille
-      </span>
+        <main>Sushanth Kille</main>
+      </motion.span>
     </div>
   );
 };

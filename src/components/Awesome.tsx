@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import * as Three from "three";
 
 const getMousePick = () => {
-  const MousePickGeo = new Three.CircleGeometry(20, 32);
+  const MousePickGeo = new Three.CircleGeometry(10, 32);
   const MousePickMaterial = new Three.MeshPhongMaterial({
     color: "#D6EFFF",
     opacity: 0.5,

@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 export const Scroller = () => {
   const { scrollYProgress } = useScroll();
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 90]);
-  const move = useTransform(scrollYProgress, [0, 1], [0, 32]);
 
   return (
     <div
@@ -14,16 +13,18 @@ export const Scroller = () => {
         left: 0,
       }}
     >
+      <motion.div style={{ height: `${rotate}%` }}></motion.div>
       <motion.div
         style={{
           width: "2em",
-          height: "2em",
+          height: "2rem",
           borderRadius: "20%",
           backgroundColor: "whitesmoke",
-          translateY: move,
           rotate,
         }}
-        transition={{ type: "spring" }}
+        transition={{ type: "spring", delay: 2.5 }}
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
       ></motion.div>
     </div>
   );

@@ -9,15 +9,17 @@ export const Content = () => {
         alignItems: "center",
       }}
     >
-      <div style={{ flex: "80", padding: "0 5%", fontSize: "min(4vw,4vh)" }}>
-        Cross-Domain Developer with expertise in Web/App Development, Data
-        Engineering, and DevOps. Specializing in Full Stack Development, with a
-        primary focus on Frontend technologies(Vanilla + ReactJS).
-      </div>
+      <section>
+        <div style={{ flex: "80", padding: "0 5%", fontSize: "min(4vw,4vh)" }}>
+          Cross-Domain Developer with expertise in Web/App Development, Data
+          Engineering, and DevOps. Specializing in Full Stack Development, with
+          a primary focus on Frontend technologies(Vanilla + ReactJS).
+        </div>
+      </section>
       <div
         style={{
-          width: "1px",
-          backgroundColor: "whitesmoke",
+          width: "0px",
+          borderRight: "2px dotted whitesmoke",
           borderRadius: "1px",
           height: "50%",
         }}
