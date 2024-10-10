@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { NUMBER_OF_PAGES } from "../common";
 
 export const Name = () => {
@@ -9,6 +9,7 @@ export const Name = () => {
     [0, -100, -100]
   );
   const xPercent = useTransform(x, (i) => `${i}%`);
+  const y = useSpring(scrollY, { stiffness: 100 });
 
   return (
     <div
@@ -35,9 +36,8 @@ export const Name = () => {
           borderRight: ".2em solid white",
           animation: "typed 2s steps(14),blink-caret 1s step-end infinite",
           x: xPercent,
-          y: scrollY,
+          y,
         }}
-        transition={{ type: "spring" }}
       >
         <main>Sushanth Kille</main>
       </motion.span>
