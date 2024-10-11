@@ -1,4 +1,4 @@
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { NUMBER_OF_PAGES } from "../common";
 
 export const Name = () => {
