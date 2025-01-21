@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import * as Three from "three";
 
 const getMousePick = () => {
-  const MousePickGeo = new Three.CircleGeometry(10, 32);
+  const MousePickGeo = new Three.CircleGeometry(10, 64);
   const MousePickMaterial = new Three.MeshPhongMaterial({
     color: "#D6EFFF",
     opacity: 0.5,
@@ -62,10 +62,16 @@ const render = (canvas: HTMLCanvasElement) => {
     camera.updateProjectionMatrix();
   };
   const click = () => {
-    mousePick.geometry.scale(0.99, 0.99, 0.99);
+    mousePick.geometry.scale(1.5, 1.5, 1.5);
+    renderer.render(scene, camera);
+  };
+  const rightClick = (e: Event) => {
+    e.preventDefault();
+    mousePick.geometry.scale(0.75, 0.75, 0.75);
     renderer.render(scene, camera);
   };
   window.addEventListener("click", click);
+  window.addEventListener("contextmenu", rightClick);
   window.addEventListener("mousemove", mousemove);
   window.addEventListener("resize", resize);
 };

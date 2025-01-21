@@ -6,35 +6,43 @@ export const Name = () => {
   const x = useTransform(
     scrollYProgress,
     [0, 1 / NUMBER_OF_PAGES, 1],
-    [0, -100, -100]
+    [0, 150, 150]
   );
-  const xPercent = useTransform(x, (i) => `${i}%`);
+  const xLeft = useTransform(x, (i) => `${-i}vh`);
+  const xRight = useTransform(x, (i) => `${i}vh`);
 
   return (
     <div
       style={{
         height: "100vh",
-        width: "max-content",
-        maxWidth: "100vw",
+        width: "100vw",
         display: "flex",
-        flexDirection: "row",
-        justifyContent: "start",
-        alignItems: "start",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <motion.span
+      <motion.img
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        src="/blue-gradient.png"
         style={{
-          fontSize: "10vw",
+          height: "25vh",
+          y: scrollY,
+          x: xRight,
+        }}
+      ></motion.img>
+      <motion.span
+        initial={{ opacity: 0, scaleX: 0.5 }}
+        animate={{ opacity: 1, scaleX: 1 }}
+        transition={{ duration: 0.5 }}
+        style={{
+          fontSize: "min(5vw,5vh)",
           fontWeight: 700,
-          fontFamily: "Roboto Mono",
           letterSpacing: "0rem",
-          overflow: "clip",
-          textWrap: "nowrap",
-          margin: "auto",
-          paddingLeft: "5%",
-          borderRight: ".2em solid white",
-          animation: "typed 2s steps(14),blink-caret 1s step-end infinite",
-          x: xPercent,
+          textAlign: "center",
+          x: xLeft,
           y: scrollY,
         }}
       >

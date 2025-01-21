@@ -22,7 +22,7 @@ export const Scroller = () => {
           backgroundColor: "whitesmoke",
           rotate,
         }}
-        transition={{ type: "spring", delay: 2.5 }}
+        transition={{ type: "spring", delay: 0.5 }}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
       ></motion.div>

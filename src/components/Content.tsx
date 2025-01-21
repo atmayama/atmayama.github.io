@@ -12,8 +12,11 @@ export const Content = () => {
       <section>
         <div style={{ flex: "80", padding: "0 5%", fontSize: "min(4vw,4vh)" }}>
           Cross-Domain Developer with expertise in Web/App Development, Data
-          Engineering, and DevOps. Specializing in Full Stack Development, with
-          a primary focus on Frontend technologies(Vanilla + ReactJS).
+          Engineering, and DevOps.
+        </div>
+        <div style={{ flex: "80", padding: "0 5%", fontSize: "min(4vw,4vh)" }}>
+          Specializing in Full Stack Development, with a primary focus on
+          Frontend technologies(Vanilla + ReactTS)
         </div>
       </section>
       <div
