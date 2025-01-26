@@ -39,6 +39,8 @@ div {
   -ms-overflow-style: none;
   scrollbar-width: none;
   cursor: none;
+
+  scroll-behavior: smooth;
 }
 
 @keyframes typed {

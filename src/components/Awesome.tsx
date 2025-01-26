@@ -61,17 +61,17 @@ const render = (canvas: HTMLCanvasElement) => {
     camera.top = window.innerHeight;
     camera.updateProjectionMatrix();
   };
-  const click = () => {
-    mousePick.geometry.scale(1.5, 1.5, 1.5);
-    renderer.render(scene, camera);
-  };
-  const rightClick = (e: Event) => {
-    e.preventDefault();
-    mousePick.geometry.scale(0.75, 0.75, 0.75);
-    renderer.render(scene, camera);
-  };
-  window.addEventListener("click", click);
-  window.addEventListener("contextmenu", rightClick);
+  // const click = () => {
+  //   mousePick.geometry.scale(1.5, 1.5, 1.5);
+  //   renderer.render(scene, camera);
+  // };
+  // const rightClick = (e: Event) => {
+  //   e.preventDefault();
+  //   mousePick.geometry.scale(0.75, 0.75, 0.75);
+  //   renderer.render(scene, camera);
+  // };
+  // window.addEventListener("click", click);
+  // window.addEventListener("contextmenu", rightClick);
   window.addEventListener("mousemove", mousemove);
   window.addEventListener("resize", resize);
 };

@@ -12,6 +12,7 @@ export const Name = () => {
 
   return (
     <div
+      id="home"
       style={{
         height: "100vh",
         width: "100vw",
