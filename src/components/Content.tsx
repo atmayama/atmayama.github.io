@@ -1,14 +1,28 @@
-export const Content = () => {
+import { motion } from "framer-motion";
+import { ReactNode } from "react";
+
+const AlignedPage = ({ children, id }: { children: ReactNode; id: string }) => {
   return (
     <div
+      id={id}
       style={{
         height: "100vh",
+        padding: "0 0 0 30vw",
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        gap: "1rem",
       }}
     >
+      {children}
+    </div>
+  );
+};
+
+export const Content = () => {
+  return (
+    <AlignedPage id="about">
       <section>
         <div style={{ flex: "80", padding: "0 5%", fontSize: "min(4vw,4vh)" }}>
           Cross-Domain Developer with expertise in Web/App Development, Data
@@ -19,122 +33,71 @@ export const Content = () => {
           Frontend technologies(Vanilla + ReactTS)
         </div>
       </section>
-      <div
-        style={{
-          width: "0px",
-          borderRight: "2px dotted whitesmoke",
-          borderRadius: "1px",
-          height: "50%",
-        }}
-      ></div>
-      <div
-        style={{
-          flex: "20",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "start",
-          padding: "0 5%",
-          alignItems: "start",
-          gap: "1rem",
+    </AlignedPage>
+  );
+};
 
-          fontSize: "1.2rem",
-        }}
-      >
-        <a
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "start",
-            gap: "1rem",
+export const Contact = () => {
+  return (
+    <AlignedPage id="contact">
+      <Link href="./resume.pdf" imgSrc="./resume.svg" text="Resume" />
+      <Link
+        href="https://github.com/atmayama"
+        imgSrc="./github.svg"
+        text="Github"
+      />
+      <Link
+        href="https://www.linkedin.com/in/atmayama/"
+        imgSrc="./linkedin.svg"
+        text="Linkedin"
+      />
+      <Link
+        href="mailto:sushanthkille@gmail.com"
+        imgSrc="./mail.svg"
+        text="Email"
+      />
+    </AlignedPage>
+  );
+};
 
-            cursor: "pointer",
-            color: "whitesmoke",
-            textDecoration: "none",
-          }}
-          href="./resume.pdf"
-          target="_blank"
-        >
-          <img
-            src="./resume.svg"
-            height="30"
-            width="30"
-            style={{ objectFit: "contain" }}
-          />{" "}
-          Resume
-        </a>
-        <a
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "start",
-            gap: "1rem",
-            cursor: "pointer",
+const Link = ({
+  href,
+  imgSrc,
+  text,
+}: {
+  href: string;
+  imgSrc: string;
+  text: string;
+}) => {
+  return (
+    <motion.a
+      whileHover={{ scale: 1.1 }}
+      style={{
+        display: "flex",
+        width: "20rem",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "start",
+        gap: "1rem",
 
-            color: "whitesmoke",
-            textDecoration: "none",
-          }}
-          href="https://github.com/atmayama"
-          target="_blank"
-        >
-          <img
-            src="./github.svg"
-            height="30"
-            width="30"
-            style={{ objectFit: "contain" }}
-          />
-          Github
-        </a>
-        <a
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "start",
-            gap: "1rem",
+        cursor: "pointer",
+        color: "whitesmoke",
+        textDecoration: "none",
 
-            cursor: "pointer",
-
-            color: "whitesmoke",
-            textDecoration: "none",
-          }}
-          href="https://www.linkedin.com/in/atmayama/"
-          target="_blank"
-        >
-          <img
-            src="./linkedin.svg"
-            height="30"
-            width="30"
-            style={{ objectFit: "contain" }}
-          />{" "}
-          Linkedin
-        </a>
-        <a
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "start",
-            gap: "1rem",
-
-            cursor: "pointer",
-
-            color: "whitesmoke",
-            textDecoration: "none",
-          }}
-          href="mailto:sushanthkille@gmail.com"
-          target="_blank"
-        >
-          <img
-            src="./mail.svg"
-            height="30"
-            width="30"
-            style={{ objectFit: "contain" }}
-          />
-          Email
-        </a>
-      </div>
-    </div>
+        padding: "1rem",
+        border: "1px solid ",
+        borderRadius: "1rem",
+      }}
+      href={href}
+      target="_blank"
+    >
+      <img
+        src={imgSrc}
+        height="30"
+        width="30"
+        style={{ objectFit: "contain" }}
+      />
+      {text}
+    </motion.a>
   );
 };

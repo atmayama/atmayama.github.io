@@ -2,14 +2,13 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { NUMBER_OF_PAGES } from "../common";
 
 export const Name = () => {
-  const { scrollY, scrollYProgress } = useScroll();
+  const { scrollY, scrollYProgress } = useScroll({ axis: "y", smooth: 0 });
   const x = useTransform(
     scrollYProgress,
     [0, 1 / NUMBER_OF_PAGES, 1],
-    [0, 150, 150]
+    [0, 35, 35]
   );
-  const xLeft = useTransform(x, (i) => `${-i}vh`);
-  const xRight = useTransform(x, (i) => `${i}vh`);
+  const xLeft = useTransform(x, (i) => `${-i}vw`);
 
   return (
     <div
@@ -22,32 +21,37 @@ export const Name = () => {
         alignItems: "center",
       }}
     >
-      <motion.img
-        initial={{ opacity: 0, scale: 0.8 }}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.7 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        src="/blue-gradient.png"
+        transition={{ duration: 0.8 }}
         style={{
-          height: "25vh",
           y: scrollY,
-          x: xRight,
-        }}
-      ></motion.img>
-      <motion.span
-        initial={{ opacity: 0, scaleX: 0.5 }}
-        animate={{ opacity: 1, scaleX: 1 }}
-        transition={{ duration: 0.5 }}
-        style={{
-          fontSize: "min(5vw,5vh)",
-          fontWeight: 700,
-          letterSpacing: "0rem",
-          textAlign: "center",
           x: xLeft,
-          y: scrollY,
+          width: "max-content",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <main>Sushanth Kille</main>
-      </motion.span>
+        <img
+          src="/blue-gradient.png"
+          style={{
+            height: "min(25vh,35vw)",
+          }}
+        ></img>
+        <span
+          style={{
+            fontSize: "min(4vw,4vh)",
+            fontWeight: 700,
+            letterSpacing: "0",
+            textAlign: "center",
+          }}
+        >
+          <main>Sushanth Kille</main>
+        </span>
+      </motion.div>
     </div>
   );
 };

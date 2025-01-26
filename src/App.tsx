@@ -1,14 +1,15 @@
 import { Name } from "./components/Name";
-import { Content } from "./components/Content";
+import { Contact, Content } from "./components/Content";
 import { Scroller } from "./components/Scroller";
 import { Awesome } from "./components/Awesome";
 import { Background } from "./components/Background";
+import { NUMBER_OF_PAGES } from "./common";
 
 const App = () => {
   return (
     <div
       style={{
-        height: "200vh",
+        height: `${NUMBER_OF_PAGES}00vh`,
         width: "100vw",
         overflow: "scroll",
       }}
@@ -18,6 +19,7 @@ const App = () => {
       <Background />
       <Name />
       <Content />
+      <Contact />
     </div>
   );
 };
