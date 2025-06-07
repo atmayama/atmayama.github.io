@@ -1,6 +1,5 @@
 import { Name } from "./components/Name";
 import { Contact, Content } from "./components/Content";
-import { Scroller } from "./components/Scroller";
 import { Awesome } from "./components/Awesome";
 import { Background } from "./components/Background";
 import { NUMBER_OF_PAGES } from "./common";
@@ -16,7 +15,6 @@ const App = () => {
         scrollBehavior: "smooth",
       }}
     >
-      <Scroller />
       <Nav />
       <Awesome />
       <Background />

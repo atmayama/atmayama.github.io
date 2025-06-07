@@ -2,14 +2,11 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { NUMBER_OF_PAGES } from "../common";
 
 export const Name = () => {
-  const { scrollY, scrollYProgress } = useScroll({ axis: "y", smooth: 0 });
-  const x = useTransform(
-    scrollYProgress,
-    [0, 1 / NUMBER_OF_PAGES, 1],
-    [0, 35, 35]
-  );
-  const xLeft = useTransform(x, (i) => `${-i}vw`);
-
+  const { scrollYProgress } = useScroll({ axis: "y", smooth: 0 });
+  const range = useTransform(scrollYProgress, [0,1/NUMBER_OF_PAGES,1],[50,5,5]);
+  const top = useTransform(range, i=>`max(5vw,${i}vh)`)
+  const left = useTransform(range, i=>`max(5vh,${i}vw)`)
+  const scale = useTransform(scrollYProgress, [0,1/NUMBER_OF_PAGES,1],[1,0.25,0.25]);
   return (
     <div
       id="home"
@@ -27,21 +24,22 @@ export const Name = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
         style={{
-          y: scrollY,
-          x: xLeft,
           width: "max-content",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
+          position:"fixed",
+          top,
+          left,
+          scale,
+          translate: "-50% -50%",
         }}
       >
+        <div style={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center"}}>
+
         <img
           src="/blue-gradient.png"
           style={{
             height: "min(25vh,35vw)",
           }}
-        ></img>
+          ></img>
         <span
           style={{
             fontSize: "min(4vw,4vh)",
@@ -49,9 +47,10 @@ export const Name = () => {
             letterSpacing: "0",
             textAlign: "center",
           }}
-        >
+          >
           <main>Sushanth Kille</main>
         </span>
+          </div>
       </motion.div>
     </div>
   );

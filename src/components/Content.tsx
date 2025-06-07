@@ -7,7 +7,6 @@ const AlignedPage = ({ children, id }: { children: ReactNode; id: string }) => {
       id={id}
       style={{
         height: "100vh",
-        padding: "0 0 0 30vw",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -40,22 +39,25 @@ export const Content = () => {
 export const Contact = () => {
   return (
     <AlignedPage id="contact">
+      <div style={{width:"max-content"}}>
+
       <Link href="./resume.pdf" imgSrc="./resume.svg" text="Resume" />
       <Link
         href="https://github.com/atmayama"
         imgSrc="./github.svg"
         text="Github"
-      />
+        />
       <Link
         href="https://www.linkedin.com/in/atmayama/"
         imgSrc="./linkedin.svg"
         text="Linkedin"
-      />
+        />
       <Link
         href="mailto:sushanthkille@gmail.com"
         imgSrc="./mail.svg"
         text="Email"
-      />
+        />
+        </div>
     </AlignedPage>
   );
 };
@@ -70,34 +72,34 @@ const Link = ({
   text: string;
 }) => {
   return (
+
     <motion.a
-      whileHover={{ scale: 1.1 }}
+      whileHover={{ scale: 1.1, textUnderlineOffset:"10px" }}
       style={{
         display: "flex",
-        width: "20rem",
+        fontSize:"max(12px,1vw)",
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "start",
         gap: "1rem",
-
+        
         cursor: "pointer",
         color: "whitesmoke",
-        textDecoration: "none",
-
+        
         padding: "1rem",
-        border: "1px solid ",
-        borderRadius: "1rem",
+        textUnderlineOffset:"5px"
       }}
       href={href}
       target="_blank"
-    >
+      >
       <img
         src={imgSrc}
         height="30"
         width="30"
         style={{ objectFit: "contain" }}
-      />
+        />
       {text}
     </motion.a>
+
   );
 };

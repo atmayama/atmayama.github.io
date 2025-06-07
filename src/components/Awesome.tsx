@@ -1,14 +1,23 @@
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import * as Three from "three";
 
-const getMousePick = () => {
-  const MousePickGeo = new Three.CircleGeometry(10, 64);
-  const MousePickMaterial = new Three.MeshPhongMaterial({
-    color: "#D6EFFF",
-    opacity: 0.5,
-  });
-  const mousePick = new Three.Mesh(MousePickGeo, MousePickMaterial);
+const MousePickGeo = new Three.CircleGeometry(3, 32);
+const MousePickMaterial = new Three.MeshPhongMaterial({
+  color: "#D6EFFF",
+  opacity: 0.5,
+});
+const mousePick = new Three.Mesh(MousePickGeo, MousePickMaterial);
 
+const rippleGeometry = new Three.RingGeometry(0, 5, 64);
+const rippleMaterial = new Three.MeshBasicMaterial({
+  color: "#ffffff",
+  transparent: true,
+  // side: Three.DoubleSide
+});
+const ripple = new Three.Mesh(rippleGeometry, rippleMaterial);
+const RIPPLE_PERIOD = 300;
+
+const getMousePick = () => {
   mousePick.position.x = 50;
   mousePick.position.y = 50;
   mousePick.position.z = 0;
@@ -51,6 +60,7 @@ const render = (canvas: HTMLCanvasElement) => {
   const mousemove = (mouseEvent: MouseEvent) => {
     mousePick.position.x = mouseEvent.clientX;
     mousePick.position.y = window.innerHeight - mouseEvent.clientY;
+
     renderer.render(scene, camera);
   };
   const resize = () => {
@@ -61,28 +71,53 @@ const render = (canvas: HTMLCanvasElement) => {
     camera.top = window.innerHeight;
     camera.updateProjectionMatrix();
   };
-  // const click = () => {
-  //   mousePick.geometry.scale(1.5, 1.5, 1.5);
-  //   renderer.render(scene, camera);
-  // };
-  // const rightClick = (e: Event) => {
-  //   e.preventDefault();
-  //   mousePick.geometry.scale(0.75, 0.75, 0.75);
-  //   renderer.render(scene, camera);
-  // };
-  // window.addEventListener("click", click);
-  // window.addEventListener("contextmenu", rightClick);
+
+  let startTime = performance.now();
+
+  const rippleAnimate = () => {
+    const elapsedTime = performance.now() - startTime;
+
+    const alpha = 0.1;
+
+    ripple.scale.x += alpha;
+    ripple.scale.y += alpha;
+    ripple.material.opacity -= 0.01;
+
+    const position = mousePick.position;
+    ripple.position.copy(position);
+    ripple.lookAt(new Three.Vector3(0, 0, 1).add(position));
+
+    if (elapsedTime < RIPPLE_PERIOD) {
+      requestAnimationFrame(rippleAnimate);
+    } else {
+      ripple.scale.x = 1;
+      ripple.scale.y = 1;
+      ripple.material.opacity = 1;
+      scene.remove(ripple);
+      ripple.geometry.dispose();
+      ripple.material.dispose();
+    }
+    renderer.render(scene, camera);
+  }
+  const rippleClick = () => {
+    startTime = performance.now();
+
+    scene.add(ripple);
+    requestAnimationFrame(rippleAnimate);
+  }
+
   window.addEventListener("mousemove", mousemove);
+  window.addEventListener("mouseup", rippleClick)
   window.addEventListener("resize", resize);
 };
 
-export const Awesome = () => {
+export const Awesome = memo(() => {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     if (ref.current) {
       render(ref.current);
     }
-  }, [ref.current]);
+  }, []);
 
   return (
     <canvas
@@ -97,4 +132,4 @@ export const Awesome = () => {
       }}
     ></canvas>
   );
-};
+}, () => true);
